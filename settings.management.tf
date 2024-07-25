@@ -1,0 +1,48 @@
+locals {
+  configure_management_resources = {
+    settings = {
+      log_analytics = {
+        enabled = true
+        config = {
+          retention_in_days                                 = 30
+          enable_monitoring_for_arc                         = false
+          enable_monitoring_for_vm                          = false
+          enable_monitoring_for_vmss                        = false
+          enable_solution_for_agent_health_assessment       = false
+          enable_solution_for_anti_malware                  = false
+          enable_solution_for_azure_activity                = false
+          enable_solution_for_change_tracking               = false
+          enable_solution_for_service_map                   = false
+          enable_solution_for_sql_assessment                = false
+          enable_solution_for_updates                       = false
+          enable_solution_for_vm_insights                   = false
+          enable_sentinel                                   = false
+          enable_solution_for_sql_advanced_threat_detection = false
+          enable_solution_for_sql_vulnerability_assessment  = false
+        }
+      }
+      security_center = {
+        enabled = false
+        config = {
+          email_security_contact             = local.security_contact_email_address
+          enable_defender_for_acr            = true
+          enable_defender_for_app_services   = true
+          enable_defender_for_arm            = true
+          enable_defender_for_dns            = true
+          enable_defender_for_key_vault      = true
+          enable_defender_for_kubernetes     = true
+          enable_defender_for_servers        = true
+          enable_defender_for_sql_servers    = true
+          enable_defender_for_sql_server_vms = true
+          enable_defender_for_storage        = true
+          enable_defender_for_containers     = false
+          enable_defender_for_oss_databases  = false
+        }
+      }
+    }
+
+    location = var.management_resources_location
+    tags     = var.management_resources_tags
+    advanced = null
+  }
+}

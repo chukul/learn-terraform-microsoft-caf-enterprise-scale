@@ -35,8 +35,14 @@ variable "root_name" {
 
 variable "default_location" {
   type        = string
-  default     = "eastus"
+  default     = "southeastasia"
   description = "Sets the default location for resources, including references to location within Policy templates."
+}
+
+variable "deploy_core_landing_zones" {
+  type        = bool
+  default     = false
+  description = "If set to true, will deploy the \"Corp\" landing zones in addition to any core and custom landing zones."
 }
 
 variable "deploy_corp_landing_zones" {
@@ -73,4 +79,38 @@ variable "security_contact_email_address" {
   type        = string
   default     = "security.contact@replace_me"
   description = "Sets the security contact email address used when configuring Azure Security Center."
+}
+
+variable "connectivity_resources_location" {
+  type    = string
+  default = "southeastasia"
+}
+
+variable "connectivity_resources_tags" {
+  type = map(string)
+  default = {
+    demo_type = "deploy_connectivity_resources_custom"
+  }
+}
+
+variable "log_retention_in_days" {
+  type    = number
+  default = 30
+}
+
+variable "security_alerts_email_address" {
+  type    = string
+  default = "my_valid_security_contact@replace_me" # Replace this value with your own email address.
+}
+
+variable "management_resources_location" {
+  type    = string
+  default = "southeastasia"
+}
+
+variable "management_resources_tags" {
+  type = map(string)
+  default = {
+    demo_type = "deploy_management_resources_custom"
+  }
 }
